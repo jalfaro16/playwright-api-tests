@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+/venv/
+__pycache__/
+
+# Playwright specific
+playwright-report/
+test-results/
+blob-report/
+playwright/.cache/
+
+# Environment variables (Never upload your API tokens!)
+.env
+
+# OS generated files
+.DS_Store
+Thumbs.db
