@@ -15,3 +15,5 @@ playwright/.cache/
 # OS generated files
 .DS_Store
 Thumbs.db
+
+allure-results/

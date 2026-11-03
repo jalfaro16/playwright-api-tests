@@ -2,7 +2,7 @@ import { test, expect } from '../../fixtures/api.fixture';
 import { bookingData } from '../../test-data/bookingData';
 import { BookingData } from '../../models/BookingData';
 
-test('Debe actualizar un booking usando ApiClient', async ({ apiClient, token, booking }) => {
+test('@api @smoke Debe actualizar un booking usando ApiClient', async ({ apiClient, token, booking }) => {
     
     // Actualizar booking
     const response = await apiClient.updateBooking(
