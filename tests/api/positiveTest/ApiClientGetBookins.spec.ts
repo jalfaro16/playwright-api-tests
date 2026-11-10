@@ -1,24 +1,24 @@
-import { test, expect } from '../../fixtures/api.fixture';
-import { BookingResponse } from '../../models/BookingResponse';
+import { test, expect } from '../../../fixtures/api.fixture';
+import { BookingResponse } from '../../../models/BookingResponse';
 
-test('Debe obtener la lista de bookings usando ApiClient', async ({ apiClient }) => {
+test('Should get the list of bookings using ApiClient',{tag:'@regression'}, async ({ apiClient }) => {
 
-    // Obtener lista de bookings
+    // Get the list of bookings
     const response = await apiClient.getBookings();
 
-    // Validar status code
+    // Verify status code
     expect(response.status()).toBe(200);
 
-    // Obtener response body
+    // Get response body
     const responseBody: BookingResponse[] = await response.json();
 
-    // Validar que la respuesta sea un array
+    // Verify that the response is an array
     expect(Array.isArray(responseBody)).toBeTruthy();
 
-    // Validar que existan bookings
+    // Verify that there are bookings
     expect(responseBody.length).toBeGreaterThan(0);
 
-    // Validar estructura del primer elemento
+    // Verify structure of the first element
     expect(responseBody[0]).toHaveProperty('bookingid');
 
     expect(typeof responseBody[0].bookingid).toBe('number');
@@ -30,6 +30,5 @@ test('Debe obtener la lista de bookings usando ApiClient', async ({ apiClient })
 
     console.log(await response.json());
 
-    //console.log(responseBody);
 
 });

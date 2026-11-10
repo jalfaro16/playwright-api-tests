@@ -1,9 +1,9 @@
 import { test, expect } from '@playwright/test';
-import { getToken } from '../../utils/auth';
-import { createBooking } from '../../utils/booking';
-import { bookingData } from '../../test-data/bookingData';
+import { getToken } from '../../../utils/auth';
+import { createBooking } from '../../../utils/booking';
+import { bookingData } from '../../../test-data/bookingData';
 
-test('Debe actualizar un booking existente', async ({ request }) => {
+test('Should update an existing booking',{tag:'@regression'}, async ({ request }) => {
 
     const token = await getToken(request);
 

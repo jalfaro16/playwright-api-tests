@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('POST /booking debe crear una nueva reserva', async ({ request }) => {
+test('POST /booking should create a new booking',{tag:['@smoke','@regression']}, async ({ request }) => {
 
     const bookingData = {
         firstname: 'John',

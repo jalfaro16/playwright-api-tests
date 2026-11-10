@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { getToken } from '../../utils/auth';
+import { getToken } from '../../../utils/auth';
 
-test('Debe obtener un token válido', async ({ request }) => {
+test('Should obtain a valid token',{tag:['@smoke', '@regression']}, async ({ request }) => {
 
     const token = await getToken(request);
 

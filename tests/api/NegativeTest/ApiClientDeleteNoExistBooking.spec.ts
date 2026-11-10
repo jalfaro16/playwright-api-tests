@@ -1,20 +1,20 @@
 import { test, expect } from '../../../fixtures/api.fixture';
 
-test('No debe eliminar un booking inexistente', async ({ apiClient, token }) => {
+test('Should not delete a non-existent booking',{tag:'@regression'}, async ({ apiClient, token }) => {
 
-    // Usar un ID que probablemente no exista
+    // Use an ID that probably does not exist
     const bookingId = 999999999;
 
-    // Intentar eliminar el booking
+    // Try to delete the booking
     const response = await apiClient.deleteBooking(
         bookingId,
         token
     );
 
-    // Validar status code
+    // Verify status code
     expect(response.status()).toBe(405);
 
-    // Validar mensaje de error
+    // Verify error message
     expect(await response.text()).toBe('Method Not Allowed');
 
 });

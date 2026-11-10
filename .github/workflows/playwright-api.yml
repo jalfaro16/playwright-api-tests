@@ -10,6 +10,18 @@ on:
       - main
 
   workflow_dispatch:
+    inputs:
+      suite:
+        description: 'Select test suite to run'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - smoke
+          - regression
+          - positive
+          - negative
+          - all
 
 jobs:
   api-tests:
@@ -33,7 +45,29 @@ jobs:
         run: npm ci
 
       - name: Run API Tests
-        run: npx playwright test
+        run: |
+          case "${{ github.event.inputs.suite }}" in
+            smoke)
+              echo "Running smoke tests..."
+              npx playwright test --grep @smoke
+              ;;
+            regression)
+              echo "Running regression tests..."
+              npx playwright test --grep @regression
+              ;;
+            positive)
+              echo "Running positive tests..."
+              npx playwright test tests/api/positiveTest
+              ;;
+            negative)
+              echo "Running negative tests..."
+              npx playwright test tests/api/negativeTest
+              ;;
+            *)
+              echo "Running all tests..."
+              npx playwright test
+              ;;
+          esac
 
       - name: Generate Allure Report
         if: always()

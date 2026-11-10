@@ -1,21 +1,21 @@
 import { test, expect } from '../../../fixtures/api.fixture';
 import { ErrorResponse } from '../../../models/ErrorResponse';
 
-test('No debe generar un token con credenciales inválidas', async ({ apiClient }) => {
+test('Should not generate a token with invalid credentials',{tag:'@regression'}, async ({ apiClient }) => {
 
-    // Solicitar token con credenciales inválidas
+    // Request token with invalid credentials
     const response = await apiClient.auth(
         'admin',
         'incorrectPassword'
     );
 
-    // Validar status code
+    // Verify status code
     expect(response.status()).toBe(200);
 
     // Obtener response body
     const responseBody: ErrorResponse = await response.json();
 
-    // Validar mensaje de error
+    // Verify error message
     expect(responseBody.reason).toBe('Bad credentials');
 
 });

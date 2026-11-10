@@ -1,22 +1,22 @@
 import { test, expect } from '../../../fixtures/api.fixture';
 import { bookingData } from '../../../test-data/bookingData';
 
-test('No debe actualizar un booking inexistente', async ({ apiClient, token }) => {
+test('Should not update a non-existent booking',{tag:'@regression'}, async ({ apiClient, token }) => {
 
-    // Usar un ID que probablemente no exista
+    // Use an ID that probably does not exist
     const bookingId = 999999999;
 
-    // Intentar actualizar el booking
+    // Try to update the booking
     const response = await apiClient.updateBooking(
         bookingId,
         bookingData,
         token
     );
 
-    // Validar status code
+    // Verify status code
     expect(response.status()).toBe(405);
 
-    // Validar mensaje de error
+    // Verify error message
     expect(await response.text()).toBe('Method Not Allowed');
 
 });

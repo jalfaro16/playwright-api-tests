@@ -1,13 +1,13 @@
-import { test, expect } from '../../fixtures/api.fixture';
-import { BookingData } from '../../models/BookingData';
+import { test, expect } from '../../../fixtures/api.fixture';
+import { BookingData } from '../../../models/BookingData';
 
-test('Debe actualizar parcialmente un booking', async ({ apiClient, token, booking }) => {
+test('Should partially update a booking',{tag:['@smoke','@regression']}, async ({ apiClient, token, booking }) => {
 
     const partialBooking: Partial<BookingData> = {
         firstname: 'Pedro'
     };
 
-    // Actualizar parcialmente el booking
+    // Update the booking partially
     const response = await apiClient.partialUpdateBooking(
         booking.bookingid,
         partialBooking,
@@ -20,7 +20,7 @@ test('Debe actualizar parcialmente un booking', async ({ apiClient, token, booki
 
     expect(responseBody.firstname).toBe(partialBooking.firstname);
 
-    // Validar que el resto de los datos no cambiaron
+    // Verify that the rest of the data did not change
     expect(responseBody.lastname).toBe(booking.booking.lastname);
     expect(responseBody.totalprice).toBe(booking.booking.totalprice);
     expect(responseBody.depositpaid).toBe(booking.booking.depositpaid);

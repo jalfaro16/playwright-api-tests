@@ -1,7 +1,7 @@
 import { test, expect } from '../../../fixtures/api.fixture';
 import { BookingData } from '../../../models/BookingData';
 
-test('No debe actualizar parcialmente un booking inexistente', async ({ apiClient, token }) => {
+test('Should not partially update a non-existent booking',{tag:'@regression'}, async ({ apiClient, token }) => {
 
     const bookingId = 999999999;
 

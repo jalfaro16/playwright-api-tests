@@ -1,23 +1,23 @@
 import { test, expect } from '../../../fixtures/api.fixture';
 import { BookingData } from '../../../models/BookingData';
 
-test('No debe actualizar parcialmente un booking sin autenticación', async ({ apiClient, booking }) => {
+test('Should not partially update a booking without authentication',{tag:'@regression'}, async ({ apiClient, booking }) => {
 
     const partialBooking: Partial<BookingData> = {
         firstname: 'Pedro'
     };
 
-    // Intentar actualizar parcialmente sin token
+    // Try to partially update without token
     const response = await apiClient.partialUpdateBooking(
         booking.bookingid,
         partialBooking,
         ''
     );
 
-    // Validar status code
+    // Verify status code
     expect(response.status()).toBe(403);
 
-    // Validar mensaje de error
+    // Verify error message
     expect(await response.text()).toBe('Forbidden');
 
 });

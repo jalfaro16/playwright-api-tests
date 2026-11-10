@@ -1,10 +1,10 @@
 //import { test, expect } from '@playwright/test';
-import { test, expect } from '../../fixtures/api.fixture';
-import { getToken } from '../../utils/auth';
-import { createBooking } from '../../utils/booking';
-import { bookingData } from '../../test-data/bookingData';
+import { test, expect } from '../../../fixtures/api.fixture';
+//import { getToken } from '../../utils/auth';
+//import { createBooking } from '../../utils/booking';
+//import { bookingData } from '../../test-data/bookingData';
 
-test('Debe eliminar un booking existente', async ({request, token, booking }) => {
+test('Should delete an existing booking',{tag:'@regression'}, async ({request, token, booking }) => {
 
     //const token = await getToken(request);
     //const booking = await createBooking(request, bookingData);

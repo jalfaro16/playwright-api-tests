@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('GET /booking debe retornar status 200', async ({ request }) => {
+test('GET /booking should return status 200',{tag:'@regression'}, async ({ request }) => {
 
     const response = await request.get('/booking');
 
@@ -16,6 +16,5 @@ test('GET /booking debe retornar status 200', async ({ request }) => {
 
     expect(typeof responseBody[0].bookingid).toBe('number');
 
-    //console.log(responseBody);
 
 });

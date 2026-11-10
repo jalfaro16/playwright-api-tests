@@ -1,18 +1,18 @@
-import { test, expect } from '../../fixtures/api.fixture';
-import { AuthResponse } from '../../models/AuthResponse';
+import { test, expect } from '../../../fixtures/api.fixture';
+import { AuthResponse } from '../../../models/AuthResponse';
 
-test('Debe generar un token válido', async ({ apiClient }) => {
+test('Should generate a valid token',{tag:'@regression'}, async ({ apiClient }) => {
 
-    // Solicitar token
+    // Request token
     const response = await apiClient.auth();
 
-    // Validar status code
+    // Verify status code
     expect(response.status()).toBe(200);
 
-    // Obtener response body
+    // Get response body
     const responseBody: AuthResponse = await response.json();
 
-    // Validar token
+    // Verify token
     expect(responseBody).toHaveProperty('token');
     expect(responseBody.token).toBeTruthy();
 

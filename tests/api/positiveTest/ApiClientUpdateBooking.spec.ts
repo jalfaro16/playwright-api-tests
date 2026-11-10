@@ -1,10 +1,10 @@
-import { test, expect } from '../../fixtures/api.fixture';
-import { bookingData } from '../../test-data/bookingData';
-import { BookingData } from '../../models/BookingData';
+import { test, expect } from '../../../fixtures/api.fixture';
+import { bookingData } from '../../../test-data/bookingData';
+import { BookingData } from '../../../models/BookingData';
 
-test('@api @smoke Debe actualizar un booking usando ApiClient', async ({ apiClient, token, booking }) => {
+test('@api @smoke Should update a booking using ApiClient', async ({ apiClient, token, booking }) => {
     
-    // Actualizar booking
+    // Update booking
     const response = await apiClient.updateBooking(
         booking.bookingid,
         bookingData,
@@ -13,13 +13,13 @@ test('@api @smoke Debe actualizar un booking usando ApiClient', async ({ apiClie
 
     console.log(response);
 
-     // Validar status code
+     // Verify status code
     expect(response.status()).toBe(200);
 
-    // Obtener response body
+    // Get response body
     const responseBody: BookingData = await response.json();
 
-    // Validar que los datos fueron actualizados correctamente
+    // Verify that the data was updated correctly
     expect(responseBody).toEqual(bookingData);
 
     expect(responseBody.firstname).toBe(bookingData.firstname);
